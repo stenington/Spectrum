@@ -7,7 +7,7 @@
        /__________\           /_/                              
 
 
-Spectrum: SpecIt rendering and coloring
+Spectrum: Better SpecIt rendering
 =======================================
 
 ## Purpose ##
