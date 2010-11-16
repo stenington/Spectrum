@@ -1,5 +1,6 @@
+
 Spectrum = {};
-Spectrum.colorify = function(name, failures, total) {
+Spectrum.labelTitle = function(name, failures, total) {
   var class = name.replace(/amp;|lt;|gt;|[^a-zA-Z0-9.\s]/g, "").replace(/\s+|\./g, "-").toLowerCase();
   var passfail = failures > 0 ? "fail" : "pass";
   var namedElement = $("."+class);
@@ -24,8 +25,19 @@ Spectrum.summarize = function(failures, total) {
   failures == 0 ? $("#bar").addClass("passed") : $("#bar").addClass("failed");
 };
 
-/*
-QUnit.moduleDone = Spectrum.colorify;
-QUnit.testDone = Spectrum.colorify;
-QUnit.done = Spectrum.summarize;
-*/
+Spectrum.install = function() {
+  QUnit.config.autostart = false;
+  QUnit.moduleDone = Spectrum.labelTitle;
+  QUnit.testDone = Spectrum.labelTitle;
+  QUnit.done = Spectrum.summarize;
+
+  $(window).load(function() { 
+    eval($("pre.spectrum").text());
+    $("pre.spectrum").addClass("brush: spectrum;");
+    SyntaxHighlighter.highlight();
+  });
+};
+
+Spectrum.run = function() {
+  QUnit.start();
+};

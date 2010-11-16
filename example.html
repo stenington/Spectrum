@@ -1,0 +1,68 @@
+<html>
+<head>
+  <!-- syntaxhighlighter core js and style -->
+	<script type="text/javascript" src="include/shCore.js"></script>
+	<link type="text/css" rel="stylesheet" href="include/shCoreDefault.css"/>
+  <!-- spectrum brush and page styles -->
+	<script type="text/javascript" src="spectrumBrush.js"></script>
+	<link type="text/css" rel="stylesheet" href="spectrumTheme.css"/>
+  <!-- specit includes -->
+  <script type="text/javascript" src="include/jquery-1.4.2.min.js"></script>
+  <script type="text/javascript" src="include/qunit.js"></script>
+  <script type="text/javascript" src="include/specit.js"></script>
+  <!-- spectrum -->
+  <script type="text/javascript" src="spectrum.js"></script>
+</head>
+<body>
+<div id="bar">
+Click to run tests
+</div>
+<div id="err">
+</div>
+<pre class="spectrum">
+// here are some comments
+
+describe("passing module", function() {
+  it("should have some passing tests", function(){
+    assert(1).should(eql, 1);
+  });
+
+  it("should have some more passing tests", function(){
+    assert(1).should(eql, 1);
+    assert(2).should(eql, 2);
+  });
+});
+
+describe("partially failing module", function() {
+  it("should have at least one passing test", function() {
+    assert(1).should(eql, 1);
+  });
+
+  it("should have at least one failing test", function() {
+    assert(1).should(eql, 2);
+  });
+});
+
+describe("another partially failing module", function() {
+  it("should also have at least one failing test", function() {
+    assert(1).should(eql, 2);
+  });
+
+  it("should also have at least one passing test", function() {
+    assert(1).should(eql, 1);
+  });
+});
+
+describe("failing module", function() {
+  it("should have only failing tests", function() {
+    assert(1).should(eql, 1);
+    assert(1).should(eql, 2);
+  });
+});
+</pre>
+</body>
+<script type="text/javascript">
+  Spectrum.install();
+  $("#bar").click(function(){Spectrum.run()});
+</script>
+</html>

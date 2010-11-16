@@ -58,25 +58,25 @@ describe("Spectrum syntaxhighlighter brush", function() {
 describe("Spectrum callbacks", function() {
   it("should mark passing describe titles with class pass", function() {
     assert($("#callback_example .first-describe").hasClass("pass")).shouldNot(be);
-    Spectrum.colorify("First describe", 0, 10); 
+    Spectrum.labelTitle("First describe", 0, 10); 
     assert($("#callback_example .first-describe").hasClass("pass")).should(be);
   });
 
   it("should mark failing describe titles with class fail", function() {
     assert($("#callback_example .second-describe").hasClass("fail")).shouldNot(be);
-    Spectrum.colorify("Second describe", 1, 10); 
+    Spectrum.labelTitle("Second describe", 1, 10); 
     assert($("#callback_example .second-describe").hasClass("fail")).should(be);
   });
 
   it("should mark passing it titles with class pass", function() {
     assert($("#callback_example .first-it").hasClass("pass")).shouldNot(be);
-    Spectrum.colorify("First it", 0, 10); 
+    Spectrum.labelTitle("First it", 0, 10); 
     assert($("#callback_example .first-it").hasClass("pass")).should(be);
   });
 
   it("should mark failing it titles with class fail", function() {
     assert($("#callback_example .second-it").hasClass("fail")).shouldNot(be);
-    Spectrum.colorify("Second it", 1, 10); 
+    Spectrum.labelTitle("Second it", 1, 10); 
     assert($("#callback_example .second-it").hasClass("fail")).should(be);
   });
 });
