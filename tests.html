@@ -13,6 +13,7 @@
     <link type="text/css" rel="stylesheet" href="spectrumTheme.css"/>
 	  <script type="text/javascript">SyntaxHighlighter.all();</script>
     <style type="text/css">
+      body { font-family: "Helvetica Neue Light", "HelveticaNeue-Light", "Helvetica Neue", Calibri, Helvetica, Arial; }
       .column { float: left; margin: 0 10% 0 0; }
       .last { margin-right: 0; }
       .left { background-color: blue; }
@@ -41,6 +42,11 @@ describe("Spectrum syntaxhighlighter brush", function() {
   it("should paint 'it' titles with normalized title class", function() {
     assert($("#example1 .passing-test-1").length).should(eql, 1);
     assert($("#example1 .passing-test-1").text()).should(eql, "passing test 1");
+  });
+
+  it("should catch strangely spaced tests", function() {
+    assert($("#spacing_example .describe").length).should(eql, 1);
+    assert($("#spacing_example .it").length).should(eql, 1);
   });
 
   it("should normalize wacky titles", function() {
@@ -83,6 +89,7 @@ describe("Spectrum callbacks", function() {
     <ol id="qunit-tests"></ol>
     <div id="workspace">
       <div id="example1">
+        <p>Example:</p>
         <pre class="brush: spectrum;">
 describe("Passing thing", function() {
   it("passing test 1", function() {
@@ -91,7 +98,26 @@ describe("Passing thing", function() {
 });
         </pre>
       </div>
+
+      <div id="spacing_example">
+        <p>Spacing example:</p>
+        <pre class="brush: spectrum;">
+describe
+(
+  "Passing thing" , 
+  function() {
+  it
+  (
+    "passing test 1" , 
+    function() {
+    assert(1).should(eql, 1);
+  });
+});
+        </pre>
+      </div>
+
       <div id="normalization_example">
+        <p>Normalization example:</p>
         <pre class="brush: spectrum;">
 describe("Wacky && titles ||;'", function() {
   it("Wacky 123 tITle &lt; &gt;", function() {
@@ -100,8 +126,10 @@ describe("Wacky && titles ||;'", function() {
 });
         </pre>
       </div>
+
       <div id="callback_example">
-      <pre class="brush: spectrum;">
+        <p>Callback example:</p>
+        <pre class="brush: spectrum;">
 describe("First describe", function() {
   it("First it", function() {
     // nothing
@@ -113,7 +141,7 @@ describe("Second describe", function() {
     // nothing
   });
 });
-      </pre>
+        </pre>
       </div>
     </div>
   </body>
