@@ -1,0 +1,77 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+      "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+  <head>
+    <link rel="stylesheet" href="include/qunit.css" type="text/css"/>
+    <script type="text/javascript" src="include/jquery-1.4.2.min.js"></script>
+    <script type="text/javascript" src="include/qunit.js"></script>
+    <script type="text/javascript" src="include/specit.js"></script>
+    <script type="text/javascript" src="include/shCore.js"></script>
+    <link type="text/css" rel="stylesheet" href="include/shCoreDefault.css"/>
+    <script type="text/javascript" src="spectrumBrush.js"></script>
+    <link type="text/css" rel="stylesheet" href="spectrumTheme.css"/>
+	  <script type="text/javascript">SyntaxHighlighter.all();</script>
+    <style type="text/css">
+      .column { float: left; margin: 0 10% 0 0; }
+      .last { margin-right: 0; }
+      .left { background-color: blue; }
+      .right { background-color: red; }
+
+      .column-test { clear: both; border-bottom: 10px solid black; }
+      .column-test .column { height: 50px; }
+    </style>
+    <script type="text/javascript">
+describe("Spectrum syntaxhighlighter brush", function() {
+  it("should paint 'describe' titles with describe class", function() {
+    assert($("#example1 .describe").length).should(eql, 1);
+    assert($("#example1 .describe").text()).should(eql, "Passing thing");
+  });
+
+  it("should paint 'describe' titles with normalized title class", function() {
+    assert($("#example1 .passing-thing").length).should(eql, 1);
+    assert($("#example1 .passing-thing").text()).should(eql, "Passing thing");
+  });
+
+  it("should paint 'it' titles with it class", function() {
+    assert($("#example1 .it").length).should(eql, 1);
+    assert($("#example1 .it").text()).should(eql, "passing test 1");
+  });
+
+  it("should paint 'it' titles with normalized title class", function() {
+    assert($("#example1 .passing-test-1").length).should(eql, 1);
+    assert($("#example1 .passing-test-1").text()).should(eql, "passing test 1");
+  });
+
+  it("should normalize wacky titles", function() {
+    assert($("#normalization_example .describe").hasClass("wacky-titles")).should(be);
+    assert($("#normalization_example .it").hasClass("wacky-123-title")).should(be);
+  });
+}); 
+    </script>
+  </head>
+  <body>
+    <h1 id="qunit-header">Spectrum</h1>
+    <h2 id="qunit-banner"></h2>
+    <h2 id="qunit-userAgent"></h2>
+    <ol id="qunit-tests"></ol>
+    <div id="workspace">
+      <div id="example1">
+        <pre class="brush: spectrum;">
+describe("Passing thing", function() {
+  it("passing test 1", function() {
+    assert(1).should(eql, 1);
+  });
+});
+        </pre>
+      </div>
+      <div id="normalization_example">
+        <pre class="brush: spectrum;">
+describe("Wacky && titles ||;'", function() {
+  it("Wacky 123 tITle &lt; &gt;", function() {
+  });
+});
+        </pre>
+      </div>
+    </div>
+  </body>
+</html>
