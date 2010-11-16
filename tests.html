@@ -8,6 +8,7 @@
     <script type="text/javascript" src="include/specit.js"></script>
     <script type="text/javascript" src="include/shCore.js"></script>
     <link type="text/css" rel="stylesheet" href="include/shCoreDefault.css"/>
+    <script type="text/javascript" src="spectrum.js"></script>
     <script type="text/javascript" src="spectrumBrush.js"></script>
     <link type="text/css" rel="stylesheet" href="spectrumTheme.css"/>
 	  <script type="text/javascript">SyntaxHighlighter.all();</script>
@@ -47,6 +48,32 @@ describe("Spectrum syntaxhighlighter brush", function() {
     assert($("#normalization_example .it").hasClass("wacky-123-title")).should(be);
   });
 }); 
+
+describe("Spectrum callbacks", function() {
+  it("should mark passing describe titles with class pass", function() {
+    assert($("#callback_example .first-describe").hasClass("pass")).shouldNot(be);
+    Spectrum.colorify("First describe", 0, 10); 
+    assert($("#callback_example .first-describe").hasClass("pass")).should(be);
+  });
+
+  it("should mark failing describe titles with class fail", function() {
+    assert($("#callback_example .second-describe").hasClass("fail")).shouldNot(be);
+    Spectrum.colorify("Second describe", 1, 10); 
+    assert($("#callback_example .second-describe").hasClass("fail")).should(be);
+  });
+
+  it("should mark passing it titles with class pass", function() {
+    assert($("#callback_example .first-it").hasClass("pass")).shouldNot(be);
+    Spectrum.colorify("First it", 0, 10); 
+    assert($("#callback_example .first-it").hasClass("pass")).should(be);
+  });
+
+  it("should mark failing it titles with class fail", function() {
+    assert($("#callback_example .second-it").hasClass("fail")).shouldNot(be);
+    Spectrum.colorify("Second it", 1, 10); 
+    assert($("#callback_example .second-it").hasClass("fail")).should(be);
+  });
+});
     </script>
   </head>
   <body>
@@ -68,9 +95,25 @@ describe("Passing thing", function() {
         <pre class="brush: spectrum;">
 describe("Wacky && titles ||;'", function() {
   it("Wacky 123 tITle &lt; &gt;", function() {
+    // nothing
   });
 });
         </pre>
+      </div>
+      <div id="callback_example">
+      <pre class="brush: spectrum;">
+describe("First describe", function() {
+  it("First it", function() {
+    // nothing
+  });
+});
+
+describe("Second describe", function() {
+  it("Second it", function() {
+    // nothing
+  });
+});
+      </pre>
       </div>
     </div>
   </body>
